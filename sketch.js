@@ -1,27 +1,15 @@
+/* eslint-disable max-statements */
 let cnv;
 let player;
-let enemy;
-let enemy2;
-let enemy3;
-let enemys4;
 let full;
 let roll;
 let base;
 let base2;
-let classroom;
 let turtle;
-let desk;
-let desk2;
-let desk3
-let desk4;
-let desk5;
-let desk6;
-let desk7;
 let bubble1;
 let bubble2;
 let bubble3;
 let bubble4;
-let bubble5;
 let ciel;
 let fish;
 let sub;
@@ -50,6 +38,10 @@ function setup() {
   bubble3 = new Bubble();
   bubble4 = new Bubble();
 
+  player = createSprite(100, 200, 175, 191);
+  player.addAnimation("normalRight", "assets/player1/idlePlayerRight.png");
+  player.addAnimation("normalLeft", "assets/player1/idlePlayerLeft.png");
+
   base = createSprite(400, 525, 799, 151);
   base.addAnimation("normal", "assets/base.png");
 
@@ -65,8 +57,12 @@ function setup() {
   fish = createSprite(890, 350, 26, 18);
   fish.addAnimation("normal", "assets/fish.png");
 
+
+
   oceanScape = [base, base2, turtle, fish, sub];
   ciel = createSprite(500, -5, 1000, 5);
+
+
 
 }
 
@@ -76,7 +72,6 @@ function draw() {
     background(10, 40, 70);
     drawSprites();
 
-    // BASIC INTERFACE SETUP
 
     textSize(16);
     textFont("courier");
@@ -84,12 +79,7 @@ function draw() {
     let scoreText = text("Bubbles Collected: " + score, 800, 20);
     let levelText = text("Level " + levelCount, 20, 20);
 
-    if (paused === true) {
-      textSize(30)
-      textFont("courier");
-      fill(255, 255, 255);
-      let pauseText = text("Paused", 450, 285);
-    }
+
     bubble1.move();
     bubble1.show();
     bubble2.move();
@@ -98,18 +88,43 @@ function draw() {
     bubble3.show();
     bubble4.move();
     bubble4.show();
-   //PLATFORM COLLISION
 
-    // furniture.forEach((block) => {
-    //   if (player.collide(block)) {
-    //     player.velocity.y = 0;
-    //     if (playerStatus === "right") {
-    //       player.changeAnimation("normalright");
-    //     } else if (playerStatus === "left") {
-    //       player.changeAnimation("normalleft");
-    //     }
-    //   };
-    // });
+    //player setup
+    player.velocity.y += 0.2;
+    player.maxSpeed = 4.5;
+
+    oceanScape.forEach((oceanItem) => {
+      if (player.collide(oceanItem)) {
+        player.velocity.y = 0;
+        if (playerStatus === "right") {
+          player.changeAnimation("normalright");
+        } else if (playerStatus === "left") {
+          player.changeAnimation("normalleft");
+        }
+      }
+    });
+
+    if (keyWentDown(" ")) {
+      player.velocity.y -= 4.5;
+    }
+
+    if (keyWentDown("d")) {
+      playerStatus = "right";
+    }
+     if (keyWentDown("a")) {
+       playerStatus = "left";
+       player.changeAnimation("normalleft");
+     }
+    if (keyDown("a")) {
+      player.velocity.x -= 0.3;
+      player.changeAnimation("normalleft");
+    }
+
+    if (keyDown("d")) {
+      player.velocity.x += 0.3;
+    }
+
+    player.velocity.y += 0.2;
 
 }
 
