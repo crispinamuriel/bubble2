@@ -63,13 +63,13 @@ function setup() {
   turtle = createSprite(250, 390, 77, 64)
   turtle.addAnimation("normal", "assets/turtle.png");
 
-  sub = createSprite(550, 340, 468, 127)
-  sub.addAnimation("normal", "assets/sub.png");
+  // sub = createSprite(550, 340, 468, 127)
+  // sub.addAnimation("normal", "assets/sub.png");
 
   fish = createSprite(890, 350, 26, 18);
   fish.addAnimation("normal", "assets/fish.png");
 
-  oceanScape = [base, base2, turtle, fish, sub];
+  oceanScape = [base, base2, turtle, fish];
   ciel = createSprite(500, -5, 1000, 5);
 
 }
@@ -92,6 +92,19 @@ function draw() {
     fill(255, 255, 255);
     let pauseText = text("Paused", 450, 285);
   }
+  //  //PLATFORM COLLISION
+
+  // oceanScape.forEach(block => {
+  //   if (player.collide(block)) {
+  //     player.velocity.y = 0;
+  //     if (playerStatus === "right") {
+  //       player.changeAnimation("normalright");
+  //     } else if (playerStatus === "left") {
+  //       player.changeAnimation("normalleft");
+  //     }
+  //   }
+  // });
+
   bubble1.move();
   bubble1.show();
   bubble2.move();
@@ -197,18 +210,7 @@ function draw() {
                         "assets/player/runleft3.png", "assets/player/runleft4.png");
     player.addAnimation("jumpright", "assets/player/attackright.gif");
     player.addAnimation("jumpleft", "assets/player/attackleft.gif");
-    //PLATFORM COLLISION
 
-  oceanScape.forEach(block => {
-    if (player.collide(block)) {
-      player.velocity.y = 0;
-      if (playerStatus === "right") {
-        player.changeAnimation("normalright");
-      } else if (playerStatus === "left") {
-        player.changeAnimation("normalleft");
-      }
-    }
-  });
 }
 
 class Bubble {
