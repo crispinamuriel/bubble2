@@ -45,10 +45,12 @@ function setup() {
   // bg = loadImage("assets/background.jpeg");
   bg = background(300);
   cnv = createCanvas(1000, 600);
-  scoreElem = createDiv("Bubbles = " + score);
-  scoreElem.position(20, 20);
-  scoreElem.id = "score";
-  scoreElem.style("color", "white");
+  cnv.parent("sketch-holder");
+
+  // scoreElem = createDiv("Bubbles = " + score);
+  // scoreElem.position(20, 20);
+  // scoreElem.id = "score";
+  // scoreElem.style("color", "white");
   full = [];
   bubble1 = new Bubble();
   bubble2 = new Bubble();
@@ -74,10 +76,9 @@ function setup() {
 
   oceanScape = [base, base2, turtle, fish];
 }
-
 function draw() {
   if (hasStarted === true) {
-    background(10, 40, 70);
+    background(bg);
     drawSprites();
 
     // BASIC INTERFACE SETUP
