@@ -69,7 +69,11 @@ function setup() {
   fish = createSprite(890, 350, 26, 18);
   fish.addAnimation("normal", "assets/fish.png");
 
+<<<<<<< HEAD
   oceanScape = [base, base2, turtle, fish];
+=======
+  oceanScape = [base, base2, turtle, fish, sub];
+>>>>>>> 878bbbbb0e19c325e566a90ff1ff2f7dcaaba334
   ciel = createSprite(500, -5, 1000, 5);
 
 }
