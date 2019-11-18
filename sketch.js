@@ -30,6 +30,7 @@ let oldLevelCount = levelCount;
 function setup() {
   bg = background(300)
   cnv = createCanvas(1000, 600);
+  cnv.parent("parent");
   scoreElem = createDiv("Bubbles = " + score);
   scoreElem.position(20, 20);
   scoreElem.id = "score";
