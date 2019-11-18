@@ -1,4 +1,7 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable max-statements */
+
+//Variable Initiation
 let cnv;
 let player;
 let full;
@@ -23,9 +26,8 @@ let turnCount = 0;
 let levelCount = 1;
 let oldLevelCount = levelCount;
 
-
+//This  Function Initiates the canvas
 function setup() {
-  // bg = loadImage('assets/background.jpeg');
   bg = background(300)
   cnv = createCanvas(1000, 600);
   scoreElem = createDiv("Bubbles = " + score);
@@ -57,15 +59,12 @@ function setup() {
   fish = createSprite(890, 350, 26, 18);
   fish.addAnimation("normal", "assets/fish.png");
 
-
-
   oceanScape = [base, base2, turtle, fish, sub];
   ciel = createSprite(500, -5, 1000, 5);
 
-
-
 }
 
+//This Function Loops to Animate Sprites
 function draw() {
 
 
@@ -79,7 +78,7 @@ function draw() {
     let scoreText = text("Bubbles Collected: " + score, 800, 20);
     let levelText = text("Level " + levelCount, 20, 20);
 
-
+    //Bubble animation
     bubble1.move();
     bubble1.show();
     bubble2.move();
@@ -97,15 +96,15 @@ function draw() {
       if (player.collide(oceanItem)) {
         player.velocity.y = 0;
         if (playerStatus === "right") {
-          player.changeAnimation("normalright");
+          player.changeAnimation("normalRight");
         } else if (playerStatus === "left") {
-          player.changeAnimation("normalleft");
+          player.changeAnimation("normalLeft");
         }
       }
     });
-
+    //Player Controls
     if (keyWentDown(" ")) {
-      player.velocity.y -= 4.5;
+      player.velocity.y -= 4.5
     }
 
     if (keyWentDown("d")) {
@@ -113,11 +112,11 @@ function draw() {
     }
      if (keyWentDown("a")) {
        playerStatus = "left";
-       player.changeAnimation("normalleft");
+       player.changeAnimation("normalLeft");
      }
     if (keyDown("a")) {
       player.velocity.x -= 0.3;
-      player.changeAnimation("normalleft");
+      player.changeAnimation("normalLeft");
     }
 
     if (keyDown("d")) {
@@ -127,7 +126,7 @@ function draw() {
     player.velocity.y += 0.2;
 
 }
-
+//Bubble Class Definition
 class Bubble {
   constructor() {
     this.x = 300;
@@ -144,19 +143,5 @@ class Bubble {
     strokeWeight(4);
     noFill();
     ellipse(this.x, this.y, 24, 24);
-  }
-}
-
-class Enemy {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y
-  }
-  move() {
-    this.x = this.x + random(1, 1);
-    this.y = this.y + random(1, 1);
-  }
-  show() {
-
   }
 }
