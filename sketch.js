@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-statements */
 
@@ -103,24 +104,25 @@ function draw() {
         }
       }
     });
+
     //Player Controls
-    if (keyWentDown(" ")) {
-      player.velocity.y -= 4.5
+    if (keyWentDown(" ") || keyWentDown(UP_ARROW) || keyWentDown("w")) {
+      player.velocity.y -= 4.5;
     }
 
-    if (keyWentDown("d")) {
+    if (keyWentDown("d") || keyWentDown(RIGHT_ARROW)) {
       playerStatus = "right";
     }
      if (keyWentDown("a")) {
        playerStatus = "left";
        player.changeAnimation("normalLeft");
      }
-    if (keyDown("a")) {
+    if (keyDown("a") || keyWentDown(LEFT_ARROW)) {
       player.velocity.x -= 0.3;
       player.changeAnimation("normalLeft");
     }
 
-    if (keyDown("d")) {
+    if (keyDown("d") || keyWentDown(RIGHT_ARROW)) {
       player.velocity.x += 0.3;
     }
 
